@@ -52,9 +52,12 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "devDependencies": {
+    "babel-preset-env": "^1.6.1",
     "expect": "^1.18.0",
     "expect-jsx": "^2.5.1",
+    "minimatch": "^3.0.4",
     "mocha": "^2.4.5",
+    "pug": "^2.0.0-rc.4",
     "react-addons-test-utils": "^15.0.2"
   }
 }
