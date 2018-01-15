@@ -1,6 +1,7 @@
-import { createStore, compse } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 //import the root reducer
 import rootReducer from './reducers/index';
@@ -15,7 +16,16 @@ const defaultState = {
 	comments
 };
 
-const store = createStore(rootReducer, defaultState);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+// const enhancers = compose(
+// 	window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f
+// );
+
+
+const store = createStore(rootReducer, defaultState, composeWithDevTools(
+	applyMiddleware(...middleware)
+));
 
 export const history = syncHistoryWithStore(browserHistory, store);
 
