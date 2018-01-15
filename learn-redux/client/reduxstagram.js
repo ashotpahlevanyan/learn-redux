@@ -17,11 +17,29 @@ import { Provider } from 'react-redux';
 import store, { history } from './store';
 
 import Raven from 'raven-js';
-import {sentry_url} from './data/config';
+import {sentry_url, logException} from './data/config';
 
-Raven.config(sentry_url).install();
-
+//Raven.config(sentry_url).install();
 //console.log(window.doesnNotExist.nope);
+
+
+Raven.config(sentry_url, {
+	tags: {
+		git_commit: "sfghnsfgb1435",
+		userLevel: "editor"
+	}
+}).install();
+
+logException(new Error('donwload failed'), {
+	email: 'ashotpahlevanyan@gmail.com'
+});
+console.log(store.doesNot.nope);
+
+// Raven.captureMessage("Something bad happened");
+// Raven.showReportDialog();
+
+
+
 
 const router = (
 	<Provider store={store}>
